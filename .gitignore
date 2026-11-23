@@ -1,4 +1,6 @@
 *.out
+*.o
 *.out.dSYM
 TODO.md
 *.exe
+replace

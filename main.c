@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
     break;
   }
   default:
-    break;
+    return BAD_CODE;
   }
 
   int number_of_word = 0;

@@ -10,6 +10,7 @@ typedef enum {
   EXIT_WITHOUT_FILE, // 1
   ONLY_WORDS,        // 2
   FILE_OPEN_ERROR,   // 3
+  BAD_CODE,          // 4
 } CodeForExiting;
 
 struct File_data_replace {
