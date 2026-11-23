@@ -1,7 +1,8 @@
 #ifndef REPLACE_H
-// Macroses
-
 #define REPLACE_H
+
+#include <stdio.h>
+#include <stdlib.h>
 
 // Types
 typedef enum {
@@ -13,6 +14,3 @@ typedef enum {
 CodeForExiting some_function(int *args, char **arg);
 
 #endif
-
-#include <stdio.h>
-#include <stdlib.h>

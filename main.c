@@ -1,4 +1,4 @@
-#include "replace.h"
+#include "main_function.h"
 
 int main(int argc, char *argv[]) {
   CodeForExiting result = some_function(&argc, argv);
