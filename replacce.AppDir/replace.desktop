@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Replace
+Exec=replace
+Icon=app_icon_128
+Type=Application
+Terminal=true
+Categories=Utility;
