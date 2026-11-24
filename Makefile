@@ -1,11 +1,11 @@
 CC = gcc
 TARGET = replace
 CFLAGS = -Wall -Wextra -std=c99
-SOURCES = main.c replace.c
+SOURCES = ./sourses/main.c ./sourses/replace.c
 # just replacement: main.c->main.o
 OBJECTS = $(SOURCES:.c=.o)
 
-build: $(TARGET)
+build: $(TARGET) 
 
 # debug can be seperated or included like this
 debug: CFLAGS += -g

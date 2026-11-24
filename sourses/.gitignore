@@ -1,0 +1,5 @@
+*.out
+replace
+*.o
+TODO.md
+
