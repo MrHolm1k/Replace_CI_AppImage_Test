@@ -36,6 +36,7 @@ jobs:
           Categories=Utility;
           EOF
 
+
       - name: Creating AppRun
         run: |
           cat << 'EOF' > ./AppDir/AppRun
