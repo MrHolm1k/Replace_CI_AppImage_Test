@@ -50,12 +50,9 @@ jobs:
           APPIMAGE_EXTRACT_AND_RUN: 1
           ARCH: x86_64
         run: |
-           	wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-            chmod +x appimagetool-x86_64.AppImage
-            ./appimagetool-x86_64.AppImage AppDir Replace-x86_64.AppImage
-
-
-
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          ./appimagetool-x86_64.AppImage AppDir Replace-x86_64.AppImage
 
       - name: Upload to Release
         if: github.event_name == 'release'
@@ -63,10 +60,3 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release upload "${{ github.event.release.tag_name }}" Replace-x86_64.AppImage --clobber
 
-      
-
-          
-        
-          
-          
-          
