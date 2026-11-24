@@ -1,0 +1,72 @@
+name: AppImage Release runner
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Download git_rep # Or just git clone
+        uses: actions/checkout@v7.0.1
+
+      - name: Building program
+        run: make
+
+      - name: Preparation AppDir
+        run: |
+          mkdir -p AppDir/usr/bin
+          mkdir -p AppDir/usr/lib
+          cp ./img/app_icon_128.png ./AppDir/
+          cp replace ./AppDir/usr/bin/
+
+      - name: Creating replace.desktop
+        run: |
+          cat << 'EOF' > ./AppDir/replace.desktop
+          [Desktop Entry]
+          Name=Replace
+          Exec=replace
+          Icon=app_icon_128
+          Type=Application
+          Terminal=true
+          Categories=Utility;
+          EOF
+
+      - name: Creating AppRun
+        run: |
+          cat << 'EOF' > ./AppDir/AppRun
+          #!/bin/bash
+          HERE="$(dirname "$(readlink -f "$0")")"
+          exec "${HERE}/usr/bin/replace" "$@"
+          EOF
+          chmod +x ./AppDir/AppRun
+
+      - name: Preparing AppImage
+        env: # to solve problem with not workin AppImage builder
+          APPIMAGE_EXTRACT_AND_RUN: 1
+          ARCH: x86_64
+        run: |
+           	wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+            chmod +x appimagetool-x86_64.AppImage
+            ./appimagetool-x86_64.AppImage AppDir Replace-x86_64.AppImage
+
+
+
+
+      - name: Upload to Release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "${{ github.event.release.tag_name }}" Replace-x86_64.AppImage --clobber
+
+      
+
+          
+        
+          
+          
+          
