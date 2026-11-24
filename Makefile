@@ -20,5 +20,5 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # I don't wanna delete something important so no -f
-clear:
+clean:
 	-rm $(OBJECTS) $(TARGET)
